@@ -1,0 +1,92 @@
+
+.background-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.39);
+    z-index: 5;
+}
+
+.background-div form {
+    width: 40%;
+    height: fit-content;
+    padding: 10px 20px;
+    background-color: white;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+
+header  { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.background-div form  img { 
+    width: 102px;
+    height: 102px;
+    border-radius: 50%;
+    display: flex;
+    margin: auto;
+}
+
+.background-div form .input-block + .input-block {
+    margin-top: 20px;
+}
+
+.background-div form .input-group {
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.background-div form .input-group .input-block {
+    margin-top: 0;
+}
+
+.background-div form .input-block label {
+    color: #acacac;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+}
+
+.background-div form .input-block input, textarea { 
+    width: 100%;
+    height: 32px;
+    font-size: 14px;
+    color: #666666;
+    border: 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.background-div form .input-block textarea { 
+    margin-top: 1em;
+}
+
+.background-div form button + button {
+    margin-top: 20px;
+}
+
+.background-div form button {
+    width: 100%;
+    border: 0;
+    margin-top: 30px;
+    background: #7d40e7;
+    border-radius: 2px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+    cursor: pointer;
+    transition: background 0.5s;
+}
+
+.background-div form button:hover { 
+    background: #6931ca;
+}

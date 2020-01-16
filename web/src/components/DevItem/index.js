@@ -3,9 +3,11 @@ import api from '../../servers/api';
 
 import './styles.css';
 
+import DevEdit from '../DevEdit';
+
 function DevItem({ dev }) {
 
-  // const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(false);
 
 
   async function handleDeleteDev() {
@@ -24,12 +26,15 @@ function DevItem({ dev }) {
     }
   }
 
-  async function handleUpdateDev() {
-   
-    
+  function handleUpdateDev() {
+    setEdit(true);
   }
 
-  return ( 
+  function handleDevEditClose() {
+    setEdit(false);
+  }
+
+  return (
 
     <li className='dev-item'>
       <header>
@@ -49,6 +54,7 @@ function DevItem({ dev }) {
         <button className='button-close' onClick={handleDeleteDev} ></button>
       </div>
 
+      {edit ? <DevEdit dataDev={dev} close={handleDevEditClose} /> : ''}
       {/* End */}
     </li>
   );

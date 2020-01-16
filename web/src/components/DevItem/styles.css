@@ -73,18 +73,3 @@ li.dev-item .button-edit {
     width: 24px;
     height: 24px;
 }
-
-.popup-edit-backgound {
-    background-color: rgba(0, 0, 0, 0.4);
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.popup-edit{
-    width: 25%;
-    height: 25%;
-    z-index: 5;
-    background-color: white;
-    margin: auto;
-}
