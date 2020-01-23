@@ -14,14 +14,14 @@ async function findLocation(latitude, longitude) {
 
     const result = apiLocation.data.results[0].address_components;
 
-    console.log(result);
+    // console.log(result);
 
     let count = 0;
     result.forEach( element => {
         count++;
     });
 
-    console.log(` Teste result.leght -> ${count}`);
+    // console.log(` Teste result.leght -> ${count}`);
 
     if (count < 5) {
         return { state: result[2].long_name, country: result[3].long_name };
@@ -155,7 +155,7 @@ module.exports = {
                 state,
             })
 
-            console.log(dev);
+            // console.log(dev);
 
 
             const sendSocketMessageTo = findConnections(
@@ -196,7 +196,7 @@ module.exports = {
                 { new: true }
             );
 
-            console.log(updatedDev);
+            // console.log(updatedDev);
 
             return response.json(updatedDev);
         }

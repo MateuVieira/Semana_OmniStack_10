@@ -1,9 +1,22 @@
-import React from 'react';
+import React , { useState, useEffect } from 'react';
+import api from '../../servers/api'
 import './styles.css';
 
 import DevItemInfo from '../DevItemInfo';
 
 function DevInfo() {
+
+    const [infoState, setInfoState] = useState([]);
+
+    useEffect(() => {
+        async function loadInfoState() {
+          const response = await api.get('/search-location-list');
+    
+          setInfoState(response.data);
+        }
+    
+        loadInfoState();
+      });
 
     const dataState = [
         { state: 'São Paulo', dev: 1001, porCento: "100%" },
@@ -38,8 +51,11 @@ function DevInfo() {
                 <div className='dev-state'>
                     <ul className="list-state">
                         <strong className='titulo'>Dev's pelo Brasil</strong>
-                        {dataState.map(dado => (
-                            <DevItemInfo key={dado.dev} data={dado} />
+                        {/* {dataState.map(dado => (
+                            <DevItemInfo key={dado.dev} data={dado} info={dataInfo} />
+                        ))} */}
+                        {infoState.map(dado => (
+                            <DevItemInfo key={dado.state} data={dado} />
                         ))}
                     </ul>
                 </div>
