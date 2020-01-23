@@ -9,8 +9,10 @@ const DevSchema = new mongoose.Schema({
     techs: [String],
     location: {
         type: PointSchema,
-        index: '2dsphere'
-    }
+        index: '2dsphere',
+    },
+    country: String,
+    state: String,
 })
 
 module.exports = mongoose.model('Dev', DevSchema);

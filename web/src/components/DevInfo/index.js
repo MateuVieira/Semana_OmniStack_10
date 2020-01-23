@@ -24,24 +24,27 @@ function DevInfo() {
     ];
 
     return (
-        <div className='info'>
-            <div className='dev-techs'>
-                <ul className="list-state">
-                    <strong className='titulo'>Techs dos Dev's</strong>
-                    {dataTechs.map(dado => (
-                        <DevItemInfo key={dado.dev} data={dado} />
-                    ))}
-                </ul>
+        <section className='info-section'>
+            <h3>Algumas Informações</h3>
+            <div className='info'>
+                <div className='dev-techs'>
+                    <ul className="list-state">
+                        <strong className='titulo'>Techs dos Dev's</strong>
+                        {dataTechs.map(dado => (
+                            <DevItemInfo key={dado.dev} data={dado} />
+                        ))}
+                    </ul>
+                </div>
+                <div className='dev-state'>
+                    <ul className="list-state">
+                        <strong className='titulo'>Dev's pelo Brasil</strong>
+                        {dataState.map(dado => (
+                            <DevItemInfo key={dado.dev} data={dado} />
+                        ))}
+                    </ul>
+                </div>
             </div>
-            <div className='dev-state'>
-                <ul className="list-state">
-                    <strong className='titulo'>Dev's pelo Brasil</strong>
-                    {dataState.map(dado => (
-                        <DevItemInfo key={dado.dev} data={dado} />
-                    ))}
-                </ul>
-            </div>
-        </div>
+        </section>
     );
 
 }

@@ -31,4 +31,6 @@ routes.delete('/devs/:github_username', DevController.destroy);
 // Route to list all developers within 10 km and by technical knowledge
 routes.get('/search', SearchController.index);
 
+routes.get('/search-location-list', SearchController.locationList);
+
 module.exports = routes;
