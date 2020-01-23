@@ -7,6 +7,7 @@ import DevItemInfo from '../DevItemInfo';
 function DevInfo() {
 
     const [infoState, setInfoState] = useState([]);
+    const [infoTechs, setInfoTechs] = useState([]);
 
     useEffect(() => {
         async function loadInfoState() {
@@ -16,7 +17,18 @@ function DevInfo() {
         }
     
         loadInfoState();
-      });
+      }, []);
+
+      useEffect(() => {
+        async function loadInfoTechs() {
+          const response = await api.get('search-techs-list');
+    
+
+          setInfoTechs(response.data);
+        }
+    
+        loadInfoTechs();
+      }, []);
 
     const dataState = [
         { state: 'São Paulo', dev: 1001, porCento: "100%" },
@@ -43,9 +55,9 @@ function DevInfo() {
                 <div className='dev-techs'>
                     <ul className="list-state">
                         <strong className='titulo'>Techs dos Dev's</strong>
-                        {dataTechs.map(dado => (
-                            <DevItemInfo key={dado.dev} data={dado} />
-                        ))}
+                        {infoTechs.map(dado => 
+                            <DevItemInfo key={dado.info} data={dado} />
+                        )}
                     </ul>
                 </div>
                 <div className='dev-state'>
@@ -55,7 +67,7 @@ function DevInfo() {
                             <DevItemInfo key={dado.dev} data={dado} info={dataInfo} />
                         ))} */}
                         {infoState.map(dado => (
-                            <DevItemInfo key={dado.state} data={dado} />
+                            <DevItemInfo key={dado.info} data={dado} />
                         ))}
                     </ul>
                 </div>

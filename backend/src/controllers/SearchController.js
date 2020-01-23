@@ -24,7 +24,7 @@ module.exports = {
             }
         })
 
-        console.log(devs);
+        // console.log(devs);
 
         return response.json(devs);
     },
@@ -48,9 +48,14 @@ module.exports = {
         //   console.log(countsByState);
 
         let arrCount = Object.entries(countsByState);
-        arrCount = arrCount.sort((a,b) => b[1] - a[1] );
+        arrCount = arrCount.sort(function(a,b){
+            retVal=0;
+            if(b[1]!=a[1]) retVal=b[1]>a[1]?1:-1;
+            else if(a[0]!=b[0]) retVal=a[0]>b[0]?1:-1;
+            return retVal
+        } );
         
-        console.log(arrCount);
+        // console.log(arrCount);
 
         //   const total = arrCount.map( item =>  item[1]).reduce((a,b) => a + b);
         //   console.log(total);
@@ -59,13 +64,47 @@ module.exports = {
 
         const stateInfo = arrCount.map(item => (
             {
-                state: item[0],
+                info: item[0],
                 dev: item[1],
                 porCento: ((item[1] * 100) / total) + "%",
             }
         ))
 
         //   console.log(stateInfo);
+
+        return response.json(stateInfo);
+    },
+
+    async techsList(request, response) {
+
+        const info = await Dev.find({}, { _id: 0, techs: 1 });
+
+        // console.log(info);
+
+        let countsByTechs = info.map( item => item.techs ).flat()
+        .reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), Object.create(null));;
+
+        //   console.log(countsByTechs);
+
+          let arrCount = Object.entries(countsByTechs);
+        arrCount = arrCount.sort(function(a,b){
+            retVal=0;
+            if(b[1]!=a[1]) retVal=b[1]>a[1]?1:-1;
+            else if(a[0]!=b[0]) retVal=a[0]>b[0]?1:-1;
+            return retVal
+        } );
+
+        // console.log(arrCount);
+
+        const total = arrCount[0][1];
+
+        const stateInfo = arrCount.map(item => (
+            {
+                info: item[0],
+                dev: item[1],
+                porCento: ((item[1] * 100) / total) + "%",
+            }
+        ))
 
         return response.json(stateInfo);
     },

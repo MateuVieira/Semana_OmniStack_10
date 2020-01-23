@@ -7,7 +7,7 @@ function DevItemInfo({ data }) {
     return (
         <li  className='item-state'>
             <div className='item-state-info'>
-                <span>{data.dev}</span>
+                <span>{data.info}</span>
                 <span>  |  </span>
                 <strong>{data.state}</strong>
             </div>
