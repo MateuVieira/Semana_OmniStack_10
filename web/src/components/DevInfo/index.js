@@ -9,6 +9,7 @@ function DevInfo() {
     const [infoState, setInfoState] = useState([]);
     const [infoTechs, setInfoTechs] = useState([]);
 
+    
     useEffect(() => {
         async function loadInfoState() {
           const response = await api.get('/search-location-list');
@@ -30,23 +31,10 @@ function DevInfo() {
         loadInfoTechs();
       }, []);
 
-    const dataState = [
-        { state: 'São Paulo', dev: 1001, porCento: "100%" },
-        { state: 'Rio de Janeiro', dev: 800, porCento: "79.9%" },
-        { state: 'Minas Gerais', dev: 700, porCento: "69.9%" },
-        { state: 'Santa Catarina', dev: 650, porCento: "64.9%" },
-        { state: 'Paraná', dev: 450, porCento: "44.9%" },
-        { state: 'Rio Grande do Sul', dev: 400, porCento: "39.9%" },
-    ];
+      let number = 10;
 
-    const dataTechs = [
-        { state: 'JavaScript', dev: 1001, porCento: "100%" },
-        { state: 'ReactJS', dev: 800, porCento: "79.9%" },
-        { state: 'NodeJS', dev: 700, porCento: "69.9%" },
-        { state: 'VueJS', dev: 650, porCento: "64.9%" },
-        { state: 'React Native', dev: 450, porCento: "44.9%" },
-        { state: 'Electron', dev: 400, porCento: "39.9%" },
-    ];
+      let infoTechsFirstTen = infoTechs.slice(0, number);
+      let infoStateFirstTen = infoState.slice(0, number);
 
     return (
         <section className='info-section'>
@@ -55,7 +43,7 @@ function DevInfo() {
                 <div className='dev-techs'>
                     <ul className="list-state">
                         <strong className='titulo'>Techs dos Dev's</strong>
-                        {infoTechs.map(dado => 
+                        {infoTechsFirstTen.map(dado => 
                             <DevItemInfo key={dado.info} data={dado} />
                         )}
                     </ul>
@@ -66,7 +54,7 @@ function DevInfo() {
                         {/* {dataState.map(dado => (
                             <DevItemInfo key={dado.dev} data={dado} info={dataInfo} />
                         ))} */}
-                        {infoState.map(dado => (
+                        {infoStateFirstTen.map(dado => (
                             <DevItemInfo key={dado.info} data={dado} />
                         ))}
                     </ul>
@@ -79,3 +67,22 @@ function DevInfo() {
 
 export default DevInfo;
 
+
+
+  // const dataState = [
+    //     { state: 'São Paulo', dev: 1001, porCento: "100%" },
+    //     { state: 'Rio de Janeiro', dev: 800, porCento: "79.9%" },
+    //     { state: 'Minas Gerais', dev: 700, porCento: "69.9%" },
+    //     { state: 'Santa Catarina', dev: 650, porCento: "64.9%" },
+    //     { state: 'Paraná', dev: 450, porCento: "44.9%" },
+    //     { state: 'Rio Grande do Sul', dev: 400, porCento: "39.9%" },
+    // ];
+
+    // const dataTechs = [
+    //     { state: 'JavaScript', dev: 1001, porCento: "100%" },
+    //     { state: 'ReactJS', dev: 800, porCento: "79.9%" },
+    //     { state: 'NodeJS', dev: 700, porCento: "69.9%" },
+    //     { state: 'VueJS', dev: 650, porCento: "64.9%" },
+    //     { state: 'React Native', dev: 450, porCento: "44.9%" },
+    //     { state: 'Electron', dev: 400, porCento: "39.9%" },
+    // ];

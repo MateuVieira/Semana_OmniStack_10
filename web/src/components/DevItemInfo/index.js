@@ -3,7 +3,6 @@ import './styles.css';
 
 function DevItemInfo({ data }) {
 
-
     return (
         <li  className='item-state'>
             <div className='item-state-info'>
