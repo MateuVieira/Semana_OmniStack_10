@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 
-function DevForm({ onSubmit }) {
+function DevForm({ onSubmit, closeForm }) {
 
     const [github_username, setGithub_username] = useState('');
     const [techs, setTechs] = useState('');
@@ -45,6 +45,7 @@ function DevForm({ onSubmit }) {
     return (
 
         <form onSubmit={handleSubmit}>
+            <button className='button-close' onClick={closeForm} ></button>
             <div className='input-block'>
                 <label htmlFor='github_username' >Usuário do GitHub</label>
                 <input name='github_username' id='github_username'

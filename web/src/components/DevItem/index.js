@@ -45,14 +45,13 @@ function DevItem({ dev }) {
         </div>
       </header>
       <p>{dev.bio}</p>
-      <a href={`https://github.com/${dev.github_username}`} >Acessar perfil no GitHub</a>
-
+        <a href={`https://github.com/${dev.github_username}`} >Acessar perfil no GitHub</a>
       {/* Add Update and Delete */}
 
-      <div className="button-group">
+      {/* <div className="button-group">
         <button className='button-edit' onClick={handleUpdateDev} ></button>
         <button className='button-close' onClick={handleDeleteDev} ></button>
-      </div>
+      </div> */}
 
       {edit ? <DevEdit dataDev={dev} close={handleDevEditClose} /> : ''}
       {/* End */}

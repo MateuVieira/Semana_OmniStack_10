@@ -98,6 +98,8 @@ module.exports = {
             // Select the info from API response
             const { name = login, avatar_url, bio } = apiResponse.data;
 
+            // console.log(apiResponse.data);
+
             // Call a function to parse the String techs to Array
             const techsArray = parseStringasArray(techs);
 
@@ -117,7 +119,7 @@ module.exports = {
                 location
             })
 
-            console.log(name, avatar_url, bio, github_username);
+            // console.log(name, avatar_url, bio, github_username);
 
 
             const sendSocketMessageTo = findConnections(

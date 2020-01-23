@@ -50,3 +50,14 @@ aside form button[type= submit] {
 aside form button[type= submit]:hover { 
     background: #6931ca;
 }
+
+aside form button.button-close {
+    position: relative;
+    top: -80px;
+    right: -274px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../../img/icon_close.svg);
+    background-size: 16px 14px;
+    
+}
