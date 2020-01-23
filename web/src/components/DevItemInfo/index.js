@@ -4,7 +4,7 @@ import './styles.css';
 function DevItemInfo({ data }) {
 
     return (
-        <li  className='intem-state'>
+        <li  className='item-state'>
             <div className='item-state-info'>
                 <span>{data.dev}</span>
                 <span>  |  </span>
