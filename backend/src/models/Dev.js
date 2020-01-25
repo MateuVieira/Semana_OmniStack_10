@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 const PointSchema = require('./utils/PointSchema');
 
 const DevSchema = new mongoose.Schema({
@@ -14,5 +15,7 @@ const DevSchema = new mongoose.Schema({
     country: String,
     state: String,
 })
+
+DevSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Dev', DevSchema);

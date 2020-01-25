@@ -39,6 +39,9 @@ module.exports = {
 
         // Find all devs
         const devs = await Dev.find();
+        // const devs = await Dev.paginate({}, {page: 1, limit: 8});
+
+        // console.log(devs);
 
         return response.json(devs);
     },

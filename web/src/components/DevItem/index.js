@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
-import api from '../../servers/api';
+import React from 'react';
+// import api from '../../servers/api';
 
 import './styles.css';
 
-import DevEdit from '../DevEdit';
+// import DevEdit from '../DevEdit';
 
 function DevItem({ dev }) {
 
-  const [edit, setEdit] = useState(false);
+  // const [edit, setEdit] = useState(false);
 
+  // async function handleDeleteDev() {
 
-  async function handleDeleteDev() {
+  //   if (
+  //     window.confirm(
+  //       `Voce tem certeza que deseja excluir o usuário ${dev.name}`
+  //     )
+  //   ) {
+  //     try {
+  //       await api.delete(`/devs/${dev.github_username}`);
+  //       window.location.reload();
+  //     } catch {
+  //       return;
+  //     }
+  //   }
+  // }
 
-    if (
-      window.confirm(
-        `Voce tem certeza que deseja excluir o usuário ${dev.name}`
-      )
-    ) {
-      try {
-        await api.delete(`/devs/${dev.github_username}`);
-        window.location.reload();
-      } catch {
-        return;
-      }
-    }
-  }
+  // function handleUpdateDev() {
+  //   setEdit(true);
+  // }
 
-  function handleUpdateDev() {
-    setEdit(true);
-  }
-
-  function handleDevEditClose() {
-    setEdit(false);
-  }
+  // function handleDevEditClose() {
+  //   setEdit(false);
+  // }
 
   return (
 
@@ -46,15 +45,6 @@ function DevItem({ dev }) {
       </header>
       <p>{dev.bio}</p>
         <a href={`https://github.com/${dev.github_username}`} >Acessar perfil no GitHub</a>
-      {/* Add Update and Delete */}
-
-      {/* <div className="button-group">
-        <button className='button-edit' onClick={handleUpdateDev} ></button>
-        <button className='button-close' onClick={handleDeleteDev} ></button>
-      </div> */}
-
-      {edit ? <DevEdit dataDev={dev} close={handleDevEditClose} /> : ''}
-      {/* End */}
     </li>
   );
 }

@@ -79,7 +79,7 @@ module.exports = {
 
         const info = await Dev.find({}, { _id: 0, techs: 1 });
 
-        console.log('teste');
+        // console.log('teste');
 
         let countsByTechs = info.map( item => item.techs ).flat()
         .reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), Object.create(null));;

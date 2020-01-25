@@ -14,7 +14,7 @@ import DevInfo from './components/DevInfo';
 function App() {
 
   const [devs, setDevs] = useState([]);
-  
+  const [page, setPage] = useState(1);
 
   const [formCadastro, setFormCadastro] = useState(false);
 
@@ -33,7 +33,6 @@ function App() {
   async function handleAddDev(data) {
 
     const response = await api.post('/devs', data);
-
 
     setDevs([...devs, response.data]);
   }
@@ -56,14 +55,26 @@ function App() {
 
   function filterDevs(dev) {
 
-    if(busca === '')
+    if (busca === '')
       return true;
 
     return dev.techs.includes(busca);
   }
 
+  function handleMoreDevs() {
+
+    if(((page + 1) * 8 ) >= devs.length) {
+      const buttonPage = document.querySelector('#more-devs');
+      buttonPage.disabled = true;
+    }
+
+    setPage(page + 1);
+  }
+
+  let devsPage = devs.slice(0, ( page * 8 ));
+
   return (
-    
+
     <div id='app'>
       <header className='principal'>
       </header>
@@ -76,10 +87,11 @@ function App() {
       <DevSearch busca={handleBuscar} />
       <main>
         <ul>
-          {devs.filter(filterDevs).map(dev => (
+          {devsPage.filter(filterDevs).map(dev => (
             <DevItem key={dev._id} dev={dev} />
           ))}
         </ul>
+        <button id='more-devs' onClick={handleMoreDevs} > </button>
         <DevInfo />
       </main>
     </div>

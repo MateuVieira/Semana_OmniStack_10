@@ -61,6 +61,29 @@
     
 }
 
+#more-devs {
+    display: flex;
+    margin: 20px auto;
+    width: 40px;
+    height: 1em;
+    border: none;
+    background: url(../img/Arrow-down.svg);
+    background-size: 40px 1em;
+    background-color: #FFF;
+    border-radius: 30%;
+    box-shadow: 0 0 14px 1px rgba(0, 0, 0, 0.1);
+    animation: scale 2s;
+    cursor: pointer;
+}
+
+#more-devs:hover {
+    transform: scale(1.2);
+}
+
+#more-devs:disabled {
+    visibility: hidden;
+}
+
 
 @media (max-width: 1000px) {
     #app {
