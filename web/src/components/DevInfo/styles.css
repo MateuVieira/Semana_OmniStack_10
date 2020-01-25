@@ -29,3 +29,12 @@ div.info ul.list-state .titulo {
     justify-content: center;
 }
 
+@media (max-width: 650px) {
+    div.info {
+        flex-direction: column;
+    }
+
+    section.info-section {
+        padding: 20px 10px 30px 10px;
+    }
+}

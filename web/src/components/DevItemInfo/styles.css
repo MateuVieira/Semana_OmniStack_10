@@ -25,3 +25,17 @@ ul.list-state li  div.div-background-bar {
     background-color: rgb(50, 9, 116);
     border-radius: 5px;
 }
+
+@media (max-width: 650px) {
+    ul.list-state li {
+        padding: 10px 10px;
+    }
+    ul.list-state li  div.div-background {
+        height: 1em;
+    }
+    
+    ul.list-state li  div.div-background-bar {
+        height: 1em;
+        margin-top: -16px;
+    }
+}

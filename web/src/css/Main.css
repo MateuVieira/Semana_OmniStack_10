@@ -12,7 +12,12 @@ main ul {
 }
 
 @media (max-width: 650px) {
+
+    main {
+        max-width: 100% !important;
+    }
     main ul {
+        margin: auto;
         grid-template-columns: 1fr;
     }
 }

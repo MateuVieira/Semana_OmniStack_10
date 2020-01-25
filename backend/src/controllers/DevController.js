@@ -46,7 +46,7 @@ module.exports = {
     // Delete Dev
     async destroy(request, response) {
 
-        console.log(request.params);
+        // console.log(request.params);
 
         // Get github username from parameters
         const { github_username } = request.params;
@@ -66,7 +66,7 @@ module.exports = {
 
     async update(request, response) {
 
-        console.log(request.params);
+        // console.log(request.params);
 
         // Get github username
         const { github_username } = request.params;
@@ -111,7 +111,7 @@ module.exports = {
 
     async store(request, response) {
 
-        console.log(request.body);
+        // console.log(request.body);
 
         // Get info from request
         const { github_username, techs, latitude, longitude } = request.body;
