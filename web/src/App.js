@@ -28,15 +28,15 @@ function App() {
       const { docs, ...infoPage } = response.data;
 
       if (devs.length === 0) {
-        setDevs(docs);
         setDevsInfo(infoPage);
+        setDevs(docs);
         return;
       }
 
       if (devsInfo.page == page || devsInfo.page === undefined) return;
       setDevsInfo(infoPage);
-      setDevs([...devs, ...docs]);
-      testePageMoreDevs();
+      setDevs(docs);
+      // testePageMoreDevs();
     }
 
     loadDevs();
@@ -74,19 +74,29 @@ function App() {
   }
 
   function testePageMoreDevs() {
-    
+
     if (page === devsInfo.pages || devs.length === devsInfo.total) {
-      const buttonPage = document.querySelector('#more-devs');
+      const buttonPage = document.querySelector('.more-devs');
       buttonPage.disabled = true;
       return;
     }
   }
 
-  function handleMoreDevs() {
+  function handleNextPage() {
 
-    testePageMoreDevs();
+    // testePageMoreDevs();
+
+    if( page === devsInfo.pages) return;
 
     setPage(page + 1);
+  }
+
+  function handlePrevPage() {
+
+    // testePageMoreDevs();
+    if( page === 1) return;
+
+    setPage(page - 1);
   }
 
   return (
@@ -102,12 +112,15 @@ function App() {
         )}
       <DevSearch busca={handleBuscar} />
       <main>
-        <ul>
-          {devs.filter(filterDevs).map(dev => (
-            <DevItem key={dev._id} dev={dev} />
-          ))}
-        </ul>
-        <button id='more-devs' onClick={handleMoreDevs} > </button>
+        <section className='section-mostra-dev'>
+          <button className='more-devs' id='previus' onClick={handlePrevPage} > </button>
+          <ul>
+            {devs.filter(filterDevs).map(dev => (
+              <DevItem key={dev._id} dev={dev} />
+            ))}
+          </ul>
+          <button className='more-devs' id='next' onClick={handleNextPage} > </button>
+        </section>
         <DevInfo />
       </main>
     </div>
