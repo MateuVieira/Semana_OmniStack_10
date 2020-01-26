@@ -16,6 +16,7 @@ function App() {
   const [devs, setDevs] = useState([]);
   const [devsInfo, setDevsInfo] = useState({});
   const [page, setPage] = useState(1);
+  const [updatePage, setUpadatePage] = useState(false);
 
   const [formCadastro, setFormCadastro] = useState(false);
 
@@ -33,10 +34,15 @@ function App() {
         return;
       }
 
+      if (updatePage) {
+        setDevs(docs);
+        setUpadatePage(false);
+      }
+
       if (devsInfo.page == page || devsInfo.page === undefined) return;
+
       setDevsInfo(infoPage);
       setDevs(docs);
-      // testePageMoreDevs();
     }
 
     loadDevs();
@@ -46,7 +52,8 @@ function App() {
 
     const response = await api.post('/devs', data);
 
-    setDevs([...devs, response.data]);
+    // setDevs([...devs, response.data]);
+    setUpadatePage(true);
   }
 
   function handleOpenCadastro() {
@@ -73,20 +80,11 @@ function App() {
     return dev.techs.includes(busca);
   }
 
-  function testePageMoreDevs() {
-
-    if (page === devsInfo.pages || devs.length === devsInfo.total) {
-      const buttonPage = document.querySelector('.more-devs');
-      buttonPage.disabled = true;
-      return;
-    }
-  }
-
   function handleNextPage() {
 
     // testePageMoreDevs();
 
-    if( page === devsInfo.pages) return;
+    if (page === devsInfo.pages) return;
 
     setPage(page + 1);
   }
@@ -94,7 +92,7 @@ function App() {
   function handlePrevPage() {
 
     // testePageMoreDevs();
-    if( page === 1) return;
+    if (page === 1) return;
 
     setPage(page - 1);
   }
