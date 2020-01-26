@@ -14,6 +14,7 @@ import DevInfo from './components/DevInfo';
 function App() {
 
   const [devs, setDevs] = useState([]);
+  const [devsInfo, setDevsInfo] = useState({});
   const [page, setPage] = useState(1);
 
   const [formCadastro, setFormCadastro] = useState(false);
@@ -22,9 +23,20 @@ function App() {
 
   useEffect(() => {
     async function loadDevs() {
-      const response = await api.get('/devs');
+      const response = await api.get(`/devs?page=${page}`);
 
-      setDevs(response.data);
+      const { docs, ...infoPage } = response.data;
+
+      if (devs.length === 0) {
+        setDevs(docs);
+        setDevsInfo(infoPage);
+        return;
+      }
+
+      if (devsInfo.page == page || devsInfo.page === undefined) return;
+      setDevsInfo(infoPage);
+      setDevs([...devs, ...docs]);
+      testePageMoreDevs();
     }
 
     loadDevs();
@@ -61,17 +73,27 @@ function App() {
     return dev.techs.includes(busca);
   }
 
-  function handleMoreDevs() {
-
-    if(((page + 1) * 8 ) >= devs.length) {
+  function testePageMoreDevs() {
+    
+    if (page === devsInfo.pages || devs.length === devsInfo.total) {
       const buttonPage = document.querySelector('#more-devs');
       buttonPage.disabled = true;
+      return;
     }
+  }
+
+  function handleMoreDevs() {
+
+    // if(((page + 1) * 8 ) >= devs.length) {
+    //   const buttonPage = document.querySelector('#more-devs');
+    //   buttonPage.disabled = true;
+    // }
+
+    // setPage(page + 1);
+    testePageMoreDevs();
 
     setPage(page + 1);
   }
-
-  let devsPage = devs.slice(0, ( page * 8 ));
 
   return (
 
@@ -87,7 +109,7 @@ function App() {
       <DevSearch busca={handleBuscar} />
       <main>
         <ul>
-          {devsPage.filter(filterDevs).map(dev => (
+          {devs.filter(filterDevs).map(dev => (
             <DevItem key={dev._id} dev={dev} />
           ))}
         </ul>

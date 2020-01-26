@@ -38,8 +38,10 @@ module.exports = {
     async index(request, response) {
 
         // Find all devs
-        const devs = await Dev.find();
-        // const devs = await Dev.paginate({}, {page: 1, limit: 8});
+        // const devs = await Dev.find();
+
+        const { page = 1 } = request.query;
+        const devs = await Dev.paginate({}, {page, limit: 8});
 
         // console.log(devs);
 
