@@ -84,12 +84,6 @@ function App() {
 
   function handleMoreDevs() {
 
-    // if(((page + 1) * 8 ) >= devs.length) {
-    //   const buttonPage = document.querySelector('#more-devs');
-    //   buttonPage.disabled = true;
-    // }
-
-    // setPage(page + 1);
     testePageMoreDevs();
 
     setPage(page + 1);

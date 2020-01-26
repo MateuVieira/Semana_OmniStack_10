@@ -36,39 +36,7 @@ module.exports = {
 
         // console.log(info);
 
-        var countsByState = info.reduce((p, c) => {
-            var name = c.state;
-            if (!p.hasOwnProperty(name)) {
-                p[name] = 0;
-            }
-            p[name]++;
-            return p;
-        }, {});
-
-        //   console.log(countsByState);
-
-        let arrCount = Object.entries(countsByState);
-        arrCount = arrCount.sort(function(a,b){
-            retVal=0;
-            if(b[1]!=a[1]) retVal=b[1]>a[1]?1:-1;
-            else if(a[0]!=b[0]) retVal=a[0]>b[0]?1:-1;
-            return retVal
-        } );
-        
-        // console.log(arrCount);
-
-        //   const total = arrCount.map( item =>  item[1]).reduce((a,b) => a + b);
-        //   console.log(total);
-
-        const total = arrCount[0][1];
-
-        const stateInfo = arrCount.map(item => (
-            {
-                info: item[0],
-                dev: item[1],
-                porCento: ((item[1] * 100) / total) + "%",
-            }
-        ))
+        const stateInfo = parseStateInfo(info);
 
         //   console.log(stateInfo);
 
@@ -108,4 +76,49 @@ module.exports = {
 
         return response.json(stateInfo);
     },
+
+    async stateForTech(request, response) {
+        console.log('teste');
+
+        const { tech } = request.query;
+
+        const info = await Dev.find({
+            techs: {
+                $in: tech,
+            },
+        }, { _id: 0, state: 1 });
+
+        const stateInfo = parseStateInfo(info);
+
+        return response.json(stateInfo);
+    }
+}
+
+function parseStateInfo(info) {
+    var countsByState = info.reduce((p, c) => {
+        var name = c.state;
+        if (!p.hasOwnProperty(name)) {
+            p[name] = 0;
+        }
+        p[name]++;
+        return p;
+    }, {});
+    //   console.log(countsByState);
+    let arrCount = Object.entries(countsByState);
+    arrCount = arrCount.sort(function (a, b) {
+        retVal = 0;
+        if (b[1] != a[1])
+            retVal = b[1] > a[1] ? 1 : -1;
+        else if (a[0] != b[0])
+            retVal = a[0] > b[0] ? 1 : -1;
+        return retVal;
+    });
+    // console.log(arrCount);
+    const total = arrCount[0][1];
+    const stateInfo = arrCount.map(item => ({
+        info: item[0],
+        dev: item[1],
+        porCento: ((item[1] * 100) / total) + "%",
+    }));
+    return stateInfo;
 }

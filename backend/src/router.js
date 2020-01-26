@@ -33,5 +33,6 @@ routes.get('/search', SearchController.index);
 
 routes.get('/search-location-list', SearchController.locationList);
 routes.get('/search-techs-list', SearchController.techsList);
+routes.get('/search-techs', SearchController.stateForTech);
 
 module.exports = routes;
