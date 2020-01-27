@@ -57,14 +57,16 @@ module.exports = {
         const { github_username } = request.params;
 
         // Search from github_username in the database
-        let dev = await Dev.findOne({ github_username });
+        const github_usernameLowerCase  = github_username.toLowerCase();
+        let dev = await Dev.findOne({ github_username: github_usernameLowerCase });
+
 
         if (!dev) {
             return response.status(400).json({ message: "Usuário não encontrado!" });
         }
 
         // Delete user
-        await Dev.findOneAndDelete({ github_username });
+        await Dev.findOneAndDelete({ github_username: github_usernameLowerCase });
 
         return response.json({ message: "Dev deletado" });
     },
@@ -77,7 +79,9 @@ module.exports = {
         const { github_username } = request.params;
 
         // Search from github_username in the database
-        let dev = await Dev.findOne({ github_username });
+        const github_usernameLowerCase  = github_username.toLowerCase();
+        let dev = await Dev.findOne({ github_username: github_usernameLowerCase });
+
 
         // If username do not exists
         if (!dev) {
@@ -106,7 +110,7 @@ module.exports = {
         };
 
         // Update Dev and return the "updated" Dev
-        let updatedDev = await Dev.findOneAndUpdate({ github_username },
+        let updatedDev = await Dev.findOneAndUpdate({ github_username: github_usernameLowerCase },
             { name, techs, bio, avatar_url, location },
             { new: true }
         );
@@ -125,10 +129,8 @@ module.exports = {
 
         // Verified if the dev exist, using github_username from body parameters 
         const github_usernameLowerCase  = github_username.toLowerCase();
-        console.log('Teste github_username -> ', github_usernameLowerCase);
         let dev = await Dev.findOne({ github_username: github_usernameLowerCase });
 
-        console.log('Teste dev -> ', dev);
 
         if (!dev) {
 
