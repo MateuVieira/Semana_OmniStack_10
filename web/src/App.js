@@ -54,6 +54,9 @@ function App() {
 
     // setDevs([...devs, response.data]);
     setUpadatePage(true);
+
+    setTimeout(() => handleCloseCadastro(), 1000);
+    
   }
 
   function handleOpenCadastro() {

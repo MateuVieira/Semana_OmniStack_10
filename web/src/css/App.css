@@ -64,6 +64,7 @@
 .section-mostra-dev { 
     display: flex;
     align-items: center;
+    min-height: 433px;
 }
 
 .more-devs {

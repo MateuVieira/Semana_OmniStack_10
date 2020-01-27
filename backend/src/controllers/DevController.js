@@ -121,8 +121,14 @@ module.exports = {
         // Get info from request
         const { github_username, techs, latitude, longitude } = request.body;
 
+       
+
         // Verified if the dev exist, using github_username from body parameters 
-        let dev = await Dev.findOne({ github_username });
+        const github_usernameLowerCase  = github_username.toLowerCase();
+        console.log('Teste github_username -> ', github_usernameLowerCase);
+        let dev = await Dev.findOne({ github_username: github_usernameLowerCase });
+
+        console.log('Teste dev -> ', dev);
 
         if (!dev) {
 
@@ -150,7 +156,7 @@ module.exports = {
 
             // Create a new Dev from the get data
             dev = await Dev.create({
-                github_username,
+                github_username: github_usernameLowerCase,
                 name,
                 avatar_url,
                 bio,
@@ -195,8 +201,9 @@ module.exports = {
             };
 
 
+            console.log('Teste Update github_username -> ', github_usernameLowerCase);
             // Update Dev and return the "updated" Dev
-            let updatedDev = await Dev.findOneAndUpdate({ github_username },
+            let updatedDev = await Dev.findOneAndUpdate({ github_username: github_usernameLowerCase },
                 { name, techs, bio, avatar_url, location, country, state },
                 { new: true }
             );
